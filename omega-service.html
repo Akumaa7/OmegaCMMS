@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Omega Service, histórico de revisões</title>
+<meta name="theme-color" content="#a50b27">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-14 -20 180 174%22%3E%3Crect x=%22-14%22 y=%22-20%22 width=%22180%22 height=%22174%22 rx=%2230%22 fill=%22%23a50b27%22/%3E%3Cpath d=%22M74.9 15.2 72.1 16.5 69.2 19.2 64.8 20.2 59.9 22.2 55.5 21.6 53.6 22.4 52.2 23.9 50.8 28.1 46.1 32.9 42.4 38.2 39.4 44.4 37.1 51.6 30.6 55.1 28.0 57.4 26.9 59.4 27.0 60.2 27.8 60.8 45.5 62.6 50.5 62.8 53.1 63.5 51.6 64.1 41.0 63.5 39.8 63.8 39.2 64.5 40.4 74.1 43.1 82.2 46.8 88.8 51.1 94.1 61.2 104.0 63.9 107.6 65.2 111.9 65.4 114.4 64.9 116.5 63.5 118.6 60.8 120.8 54.5 123.0 49.4 123.6 27.0 123.6 26.5 124.4 29.6 127.5 37.6 133.5 42.8 136.5 49.2 139.5 55.0 141.6 63.5 143.6 71.0 144.5 76.5 144.6 88.4 143.4 95.6 141.6 101.6 139.5 108.6 136.1 114.2 132.8 124.0 124.8 124.1 124.0 123.6 123.6 101.6 123.6 96.0 123.0 92.8 122.0 89.1 120.2 87.0 118.4 85.5 115.2 85.8 110.4 87.1 107.1 90.9 102.5 101.2 92.2 104.6 87.8 108.5 80.1 110.5 73.1 111.8 62.4 112.6 61.8 123.6 60.5 123.9 59.6 123.5 58.5 121.8 56.4 118.9 54.4 113.6 51.6 111.6 45.1 108.6 38.8 104.4 32.6 100.1 28.2 99.0 25.0 97.2 22.5 95.2 21.6 90.8 22.2 85.5 20.1 81.9 19.4 80.6 18.8 78.2 16.2 76.5 15.4ZM20.2 31.9 13.4 42.6 9.4 52.1 7.2 59.8 6.2 65.1 5.6 72.8 6.4 85.0 9.2 97.0 13.4 106.8 16.5 112.1 19.5 116.2 20.4 116.6 51.0 116.6 57.0 115.5 58.8 114.8 60.6 113.1 60.6 111.8 58.8 110.0 45.6 103.5 38.2 98.9 34.0 95.4 28.0 88.9 24.0 82.2 21.0 73.9 19.8 66.4 19.8 56.0 21.9 46.5 25.0 39.5 29.8 32.4 36.8 25.2 41.0 22.0 45.9 19.0 52.2 16.0 62.8 12.9 71.5 11.8 81.4 11.9 92.2 13.9 100.5 16.9 109.9 22.1 115.2 26.4 119.5 30.6 123.1 35.2 127.9 43.9 130.2 51.6 131.1 57.5 131.1 64.6 130.1 72.1 127.9 79.5 124.6 86.0 119.9 92.2 113.6 98.0 106.2 102.9 92.4 109.8 90.4 111.4 90.4 113.5 93.8 115.5 99.9 116.6 130.4 116.6 131.8 115.8 137.8 105.9 140.6 99.2 142.6 93.1 144.8 81.5 144.6 66.1 143.6 60.2 141.8 53.2 139.2 46.6 136.4 40.9 132.2 34.2 128.9 29.9 123.5 24.1 118.5 19.8 111.9 15.1 105.2 11.5 94.0 7.2 89.2 6.1 81.0 5.0 71.9 4.9 67.0 5.2 60.4 6.4 52.9 8.5 46.2 11.1 40.0 14.4 32.9 19.2 28.9 22.6Z%22 fill=%22%23fff%22 fill-rule=%22evenodd%22/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<style>
+:root{--bg:#f3f3f4;--sf:#fff;--ink:#1c1f24;--mu:#646b75;--ln:#e2e4e8;--pr:#c8102e;--ph:#a50d26;--pt:#fff;--ok:#1e8e5a;--okb:#dff3e8;--wn:#a45f00;--wnb:#fdefd0;--er:#c8102e;--erb:#fde4e7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121316;--sf:#1b1d21;--ink:#eceef0;--mu:#9aa1ab;--ln:#2c2f35;--pr:#d3213b;--ph:#e23a52;--ok:#5fcf93;--okb:#143124;--wn:#f0c14b;--wnb:#3a2f0c;--er:#ff7b8b;--erb:#3d1a20}}
+:root[data-theme="dark"]{--bg:#121316;--sf:#1b1d21;--ink:#eceef0;--mu:#9aa1ab;--ln:#2c2f35;--pr:#d3213b;--ph:#e23a52;--ok:#5fcf93;--okb:#143124;--wn:#f0c14b;--wnb:#3a2f0c;--er:#ff7b8b;--erb:#3d1a20}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Barlow,"Segoe UI",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--pr);z-index:10}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #f5b700;outline-offset:2px}
+h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",sans-serif;margin:0;line-height:1.1}
+.mu{color:var(--mu)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--dc)}100%{box-shadow:0 0 0 9px #0000}}
+@keyframes drop{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:linear-gradient(100deg,var(--ph),var(--pr));color:#fff;display:flex;align-items:center;gap:8px;padding:10px 16px;animation:drop .5s cubic-bezier(.2,.8,.2,1) both;box-shadow:0 2px 12px #0003}
+header .lg{font:700 24px "Barlow Condensed",sans-serif;flex:1;display:flex;align-items:center;gap:8px;min-width:0;white-space:nowrap}
+.mk{--s:32px;position:relative;display:inline-grid;place-items:center;width:var(--s);height:var(--s);color:#fff;flex:none}
+.mk svg{position:absolute;inset:0;width:100%;height:100%}
+.draw path{stroke:currentColor;stroke-width:.9;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;fill-opacity:0;animation:dr 1.4s cubic-bezier(.6,.05,.2,1) forwards,fl .7s ease 1.1s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}@keyframes fl{to{fill-opacity:1}}
+@keyframes spo{to{opacity:0;transform:scale(1.08);visibility:hidden}}
+@keyframes trk{from{opacity:0;letter-spacing:.9em}to{opacity:1;letter-spacing:.42em}}
+#sp{position:fixed;inset:0;z-index:50;background:radial-gradient(circle at 50% 42%,#c2102f,#a50b27 60%,#8a0920);color:#fff;display:grid;place-items:center;animation:spo .55s ease 2.5s forwards}
+#sp .mk{--s:min(36vw,160px);filter:drop-shadow(0 6px 22px #0004)}
+.wm{margin-top:18px;text-align:center;line-height:1}
+.wm b{display:block;font:700 clamp(36px,11vw,52px)/1 "Barlow Condensed",sans-serif;letter-spacing:.05em;opacity:0;animation:rise .6s cubic-bezier(.2,.8,.2,1) 1.4s forwards}
+.wm span{display:block;margin-top:8px;padding-left:.42em;font:500 clamp(14px,4.2vw,19px) Barlow,sans-serif;text-transform:uppercase;opacity:0;animation:trk .9s ease 1.65s forwards}
+.hb{background:#fff2;border:0;color:#fff;border-radius:8px;padding:5px 10px;font-size:14px;cursor:pointer;transition:background .2s,transform .15s}
+.hb:hover{background:#fff4}.hb:active{transform:scale(.94)}
+.pill{flex:none;white-space:nowrap;display:flex;align-items:center;gap:7px;background:#fff;color:#1c1f24;border-radius:99px;padding:4px 6px 4px 11px;font-size:13px;font-weight:600;transition:all .3s}
+.dot{--dc:#c8102e66;width:11px;height:11px;border-radius:50%;background:#c8102e;transition:background .4s}
+.dot.on{background:#1e8e5a;--dc:#1e8e5a66}.dot.off{animation:pulse 1.8s infinite}
+.pill button{border:0;background:#1c1f24;color:#fff;border-radius:99px;width:26px;height:26px;cursor:pointer;display:grid;place-items:center;transition:transform .2s}
+.pill button:hover{transform:rotate(60deg)}.pill.busy button{animation:spin .8s linear infinite}
+nav{display:flex;gap:6px;max-width:760px;margin:14px auto 0;padding:0 16px}
+nav button{flex:1;padding:9px 6px;border:1px solid var(--ln);background:var(--sf);border-radius:10px;cursor:pointer;font-weight:600;transition:all .25s}
+nav button:hover{transform:translateY(-2px)}
+nav button[aria-current="page"]{background:var(--pr);color:var(--pt);border-color:var(--pr);box-shadow:0 4px 12px #c8102e44}
+main{max-width:760px;margin:0 auto;padding:16px}
+.in>*{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*45ms)}
+.btn{border:1px solid var(--ln);background:var(--sf);border-radius:10px;padding:9px 14px;font-weight:600;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px #0002}.btn:active{transform:scale(.96)}
+.btn.pri{background:var(--pr);color:var(--pt);border-color:var(--pr)}.btn.pri:hover{background:var(--ph)}
+.btn.dg{background:var(--er);color:#fff;border-color:var(--er)}
+.btn.sm{padding:5px 10px;font-size:14px}
+.link{background:none;border:0;color:var(--pr);font-weight:600;padding:0;cursor:pointer;margin-bottom:10px}
+.bar{display:flex;gap:8px;margin:0 0 6px}.bar input{flex:1;min-width:0}
+input,select,textarea{width:100%;border:1px solid var(--ln);background:var(--sf);border-radius:10px;padding:9px 11px;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--pr);box-shadow:0 0 0 3px #c8102e33}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 10px}
+label input,label select,label textarea{margin-top:4px;font-weight:400}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pl{display:inline-flex;flex-direction:column;flex:none;border:2px solid #1c1f24;border-radius:6px;background:#fff;color:#111;overflow:hidden;text-align:center}
+.pl i{background:#0b4ea2;color:#fff;font:600 9px/1 Barlow,sans-serif;letter-spacing:.1em;padding:2px 0}
+.pl b{font:700 26px/1.15 "Barlow Condensed",sans-serif;letter-spacing:.07em;padding:0 10px}
+.pl.big b{font-size:40px;padding:0 16px}
+.row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--sf);border:1px solid var(--ln);border-left:5px solid var(--ln);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.row:hover{transform:translateX(4px);box-shadow:0 6px 18px #0002}
+.row.venc{border-left-color:var(--er)}.row.prox{border-left-color:#f5b700}.row.ok{border-left-color:var(--ok)}
+.rt{flex:1;min-width:0;display:flex;flex-direction:column}.rt span{color:var(--mu);font-size:14px}
+.bd{font-style:normal;font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;white-space:nowrap;background:var(--bg);color:var(--mu)}
+.b-ok{background:var(--okb);color:var(--ok)}.b-wn{background:var(--wnb);color:var(--wn)}.b-er{background:var(--er);color:#fff}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:14px;margin-bottom:12px}
+.top{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0}dt{color:var(--mu)}dd{margin:0;word-break:break-word}
+.tl{list-style:none;margin:12px 0 0;padding:0 0 0 14px;border-left:2px solid var(--ln);transform-origin:top;animation:grow .7s ease both}
+.tl li{position:relative;padding:0 0 16px 14px;animation:rise .5s both;animation-delay:calc(var(--i,0)*80ms + .2s)}
+.tl li::before{content:"";position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--pr);box-shadow:0 0 0 4px #c8102e22}
+.tl p{margin:4px 0 0}.hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.hd+p{white-space:pre-wrap}
+.err{color:var(--er);font-size:14px;min-height:1px;margin:0 0 8px}
+.ac{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+dialog{border:1px solid var(--ln);border-radius:14px;background:var(--sf);color:var(--ink);width:min(520px,calc(100% - 24px));max-height:90vh;overflow:auto;padding:18px}
+dialog[open]{animation:pop .28s cubic-bezier(.2,.8,.2,1)}
+dialog::backdrop{background:#0a0b0dad;animation:fade .25s}
+dialog h3{font-size:24px;margin-bottom:4px}dialog .btn.blk{width:100%;margin-bottom:8px}
+.login{max-width:380px;margin:0 auto;padding:44px 20px;text-align:center}
+.login>*{animation:rise .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*80ms)}
+.login .mk{--s:84px;color:var(--pr);margin-bottom:8px}
+.login h1{font-size:42px}.login form{margin-top:14px}.login .btn{width:100%;margin-top:10px}.login label{text-align:left}
+#t{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:#1c1f24;color:#fff;padding:10px 18px;border-radius:99px;opacity:0;pointer-events:none;z-index:20;transition:all .35s cubic-bezier(.2,.8,.2,1)}
+#t.show{opacity:1;transform:translate(-50%,0)}
+.ib{position:relative;flex:none;width:38px;height:38px;display:grid;place-items:center;margin:0 auto 0 0;padding:0;border-radius:10px;color:var(--mu);cursor:pointer;transition:color .2s,background .2s,opacity .2s}
+.ib:hover{background:var(--bg);color:var(--ink)}.ib:has(input:focus-visible){outline:3px solid #f5b700;outline-offset:2px}.ib.busy{opacity:.45;pointer-events:none}
+.ib input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;opacity:0;cursor:pointer;font-size:0}
+.sg{display:flex;flex-direction:column;gap:6px;margin:0 0 10px}.sg:empty{display:none}
+.sr{display:flex;align-items:center;gap:8px;animation:rise .3s both}
+.sr img{width:46px;height:46px;flex:none;object-fit:cover;border-radius:8px;border:1px solid var(--ln)}
+.sr input{padding:7px 10px;font-size:14px}
+.sr button{flex:none;width:30px;height:30px;border:0;background:none;color:var(--mu);border-radius:50%;font-size:20px;line-height:1;cursor:pointer;transition:background .2s,color .2s}
+.sr button:hover{background:var(--erb);color:var(--er)}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin:8px 0 0}
+.ft{display:flex;flex-direction:column;gap:3px;min-width:0;padding:0;border:0;background:none;text-align:left;cursor:pointer;transition:transform .15s}
+.ft:hover{transform:translateY(-2px)}.ft:active{transform:scale(.96)}
+.ft img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--ln);background:var(--bg)}
+.ft span{font-size:12px;line-height:1.25;color:var(--mu);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+dialog img.big{display:block;width:100%;max-height:70vh;object-fit:contain;border-radius:10px;background:var(--bg);cursor:zoom-out}
+@media (max-width:600px){header{flex-wrap:wrap}header .lg{flex:1 1 100%}.hb{margin-left:auto}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.draw path{stroke-dashoffset:0!important;fill-opacity:1!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<dialog id="dlg"></dialog>
+<div id="t" role="status"></div>
+<script>
+/* CONFIGURAÇÃO DO SUPABASE: preencha para ligar o servidor (a página publicada no Claude bloqueia
+   chamadas externas, então lá o app roda no modo offline). Tabelas: veja supabase-setup.sql */
+const SUPABASE_URL='https://uajvhqtxeuetsogwwthj.supabase.co',SUPABASE_KEY='sb_publishable_losiVEx5DBQZ0dJ4utRChg_qHzpCShX',EMAIL='serv.omegaacesso@gmail.com';
+const SENHA='omega2026',T=['mecanicos','veiculos','revisoes','ordens_servico','anexos'];
+const BUCKET='os-fotos',MAXPX=1280,QUAL=.72; /* fotos: lado maior de 1280 px, JPEG qualidade 72% (uns 100 a 250 KB cada) */
+const $=s=>document.querySelector(s),D=$('#dlg');
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rid=()=>crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,()=>(Math.random()*16|0).toString(16));
+const U=n=>'00000000-0000-4000-8000-'+String(n).padStart(12,'0');
+const dia=n=>{const x=new Date();x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+const hoje=()=>dia(0),fd=d=>d?d.split('-').reverse().join('/'):'—';
+const fk=n=>n===''||n==null?'—':Number(n).toLocaleString('pt-BR')+' km';
+const fm=n=>Number(n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),flat=s=>norm(s).replace(/[^a-z0-9]/g,'');
+let S,P={user:null,mec:false},view={tab:'vei',id:null,q:''},online=false,busy=false,pend=null,sb=null,lerr='',stage=[],prep=0,gen=0,pendUrls={};
+try{if(window.supabase&&SUPABASE_URL)sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY)}catch(e){}
+
+/* ---------- dados locais (cache) e fila de sincronização ---------- */
+function seed(){
+ const V=(n,placa,chassi,marca,modelo,ano,cor,km,setor)=>({id:U(n),placa,chassi,marca,modelo,ano,cor,km,setor});
+ const R=(n,v,d,tipo,km,descricao,pecas,custo,prox_km,prox_data,mecanico_nome)=>({id:U(n),veiculo_id:U(v),data:dia(-d),tipo,km,descricao,pecas,custo,prox_km,prox_data,mecanico_nome});
+ const s={me:null,q:[],
+ mecanicos:[{id:U(1),nome:'Rafael Lima'},{id:U(2),nome:'Camila Souza'},{id:U(3),nome:'Joaquim Prado'}],
+ veiculos:[V(11,'QRX4F82','9BVAG20C0MS123456','Volvo','FH 540',2021,'Branco',184200,'Cavalos, frota Sul'),V(12,'BRA2E19','93YMAFL4EJJ654321','Fiat','Fiorino',2022,'Prata',32500,'Entregas urbanas'),V(13,'GHT7B05','8AC906655KE112233','Mercedes-Benz','Sprinter 415',2019,'Branco',98900,'Transporte de equipe'),V(14,'OMG1A23','9531M82W0LR778899','Volkswagen','Delivery 11.180',2020,'Azul',12400,'Reserva')],
+ revisoes:[R(21,11,210,'preventiva',162000,'Troca de óleo do motor e dos filtros (óleo, combustível e ar). Reaperto das rodas.','Óleo 15W40 (38 L), 3 filtros',2890,182000,null,'Rafael Lima'),
+  R(22,11,60,'corretiva',178500,'Substituição da mangueira do turbo, que estava com vazamento.','Mangueira do turbo, abraçadeiras',640,null,null,'Camila Souza'),
+  R(23,12,40,'preventiva',31800,'Revisão dos 30 mil km: óleo, filtros e pastilhas dianteiras.','Óleo 5W30, filtros, pastilhas',1180,40000,dia(25),'Joaquim Prado'),
+  R(24,13,15,'preventiva',98000,'Troca de óleo, filtros e fluido de freio.','Óleo 10W40, filtros, fluido DOT4',1520,108000,dia(150),'Rafael Lima')],
+ ordens_servico:[{id:U(31),veiculo_id:U(13),descricao:'Ruído na suspensão dianteira ao passar em lombadas.',prioridade:'normal',solicitante:'Marcos (logística)',data:dia(-2),status:'aberta',resolvida_em:null,resolvida_por:null}],anexos:[]};
+ T.forEach(t=>s[t].forEach(row=>s.q.push({t,op:'up',row})));return s}
+const save=()=>{try{localStorage.setItem('omega-v2',JSON.stringify(S))}catch(e){}};
+function load(){try{S=JSON.parse(localStorage.getItem('omega-v2'))}catch(e){S=null}if(!S||!S.veiculos){S=seed();save()}S.anexos=S.anexos||[]}
+const put=(t,row)=>{const i=S[t].findIndex(x=>x.id===row.id);i<0?S[t].push(row):S[t][i]=row;S.q.push({t,op:'up',row});save();sync()};
+const del=(t,id)=>{S[t]=S[t].filter(x=>x.id!==id);S.q=S.q.filter(o=>!(o.row&&(o.row.id===id||o.row.veiculo_id===id)));S.q.push({t,op:'del',id});save();sync()};
+/* ---------- fotos: compressão, guarda local (IndexedDB) e envio ao Supabase Storage ---------- */
+const MSGFOTO='Não foi possível guardar as fotos neste aparelho. Salve sem elas ou tente com menos fotos.';
+const idb=(mode,fn)=>new Promise((ok,no)=>{const q=indexedDB.open('omega-fotos',1);q.onupgradeneeded=()=>q.result.createObjectStore('f');q.onerror=()=>no(q.error);
+ q.onsuccess=()=>{const db=q.result,tx=db.transaction('f',mode),r=fn(tx.objectStore('f'));tx.oncomplete=()=>{db.close();ok(r&&r.result)};tx.onerror=tx.onabort=()=>{db.close();no(tx.error)}}});
+const pub=p=>SUPABASE_URL+'/storage/v1/object/public/'+BUCKET+'/'+p,fsrc=a=>pendUrls[a.id]||pub(a.caminho);
+const fotosDe=f=>S.anexos.filter(f).sort((a,b)=>String(a.criado_em).localeCompare(String(b.criado_em)));
+async function shrink(file){
+ let bmp=null,src,w,h;
+ try{bmp=await createImageBitmap(file,{imageOrientation:'from-image'})}catch(e){}
+ if(bmp){src=bmp;w=bmp.width;h=bmp.height}
+ else{const u=URL.createObjectURL(file);try{src=await new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src=u});w=src.naturalWidth;h=src.naturalHeight}finally{URL.revokeObjectURL(u)}}
+ const k=Math.min(1,MAXPX/Math.max(w,h)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*k));c.height=Math.max(1,Math.round(h*k));
+ const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(src,0,0,c.width,c.height);if(bmp&&bmp.close)bmp.close();
+ const b=await new Promise((ok,no)=>c.toBlob(r=>r?ok(r):no(new Error('toBlob')),'image/jpeg',QUAL));c.width=c.height=0;return b}
+function clearStage(){gen++;prep=0;stage.forEach(s=>URL.revokeObjectURL(s.url));stage=[]}
+const paintBusy=()=>{const b=$('.ib');if(b)b.classList.toggle('busy',prep>0)};
+const rowHtml=s=>`<div class="sr" data-row="${s.id}"><img src="${s.url}" alt=""><input data-leg="${s.id}" maxlength="80" placeholder="O que aparece na foto?" aria-label="Legenda da foto"><button type="button" data-a="rmFoto" data-p="${s.id}" aria-label="Remover foto">×</button></div>`;
+const FOTOBTN=`<label class="ib" title="Anexar fotos"><input type="file" accept="image/*" multiple data-fotos aria-label="Anexar fotos"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg></label>`;
+/* guarda as fotos escolhidas no aparelho (IndexedDB) e devolve as linhas da tabela anexos; o envio fica na fila de sincronização */
+async function guardarFotos(osId,revId,etapa){
+ const L=stage.filter(s=>s.blob),t0=Date.now(),R=[];
+ for(const[i,s]of L.entries()){await idb('readwrite',st=>st.put(s.blob,s.id));pendUrls[s.id]=URL.createObjectURL(s.blob);
+  R.push({id:s.id,os_id:osId,revisao_id:revId,etapa,caminho:osId+'/'+s.id+'.jpg',legenda:s.legenda.trim()||null,criado_em:new Date(t0+i).toISOString()})}
+ return R}
+/* ao abrir o app: recupera fotos que ainda não subiram e apaga sobras */
+async function hidratar(){try{
+ const ks=await idb('readonly',s=>s.getAllKeys()),need=new Set(S.q.filter(o=>o.t==='anexos'&&o.row).map(o=>o.row.id));
+ for(const k of ks){if(!need.has(k)){await idb('readwrite',s=>s.delete(k));continue}const b=await idb('readonly',s=>s.get(k));if(b)pendUrls[k]=URL.createObjectURL(b)}
+ if(ks.length&&P.user&&!D.open)renderMain(false)}catch(e){}}
+const galeria=L=>L.length?`<div class="gl">${L.map(a=>`<button type="button" class="ft" data-a="foto" data-p="${a.id}"><img loading="lazy" src="${esc(fsrc(a))}" alt="${esc(a.legenda||'Foto anexada')}">${a.legenda?`<span>${esc(a.legenda)}</span>`:''}</button>`).join('')}</div>`:'';
+async function run(o){
+ if(o.op==='rm'){const r=await sb.storage.from(BUCKET).remove(o.paths);if(r.error)throw r.error;return}
+ if(o.t==='anexos'&&o.op==='up'){const b=await idb('readonly',s=>s.get(o.row.id));
+  if(b){const r=await sb.storage.from(BUCKET).upload(o.row.caminho,b,{contentType:'image/jpeg',upsert:true});if(r.error)throw r.error}}
+ const r=o.op==='del'?await sb.from(o.t).delete().eq('id',o.id):await sb.from(o.t).upsert(o.row);if(r.error)throw r.error}
+async function sync(manual){
+ if(busy)return;busy=true;paint();
+ try{
+  if(!sb||!P.user)throw new Error('Supabase não configurado ou sem login');
+  while(S.q.length){const o=S.q[0];await run(o);S.q.shift();save();if(o.t==='anexos'&&o.row)idb('readwrite',s=>s.delete(o.row.id)).catch(()=>{})}
+  for(const t of T){const r=await sb.from(t).select('*');if(r.error){if(t==='anexos'&&['PGRST205','42P01'].includes(r.error.code))continue;throw r.error}S[t]=r.data}
+  save();online=true;if(manual)toast('Sincronizado com o Supabase')
+ }catch(e){online=false;if(manual)toast('Servidor indisponível. Seus dados seguem salvos neste aparelho.')}
+ busy=false;paint();if(P.user&&!D.open)renderMain(false)}
+function paint(){const p=$('#pill');if(!p)return;const n=S.q.length;
+ p.className='pill'+(busy?' busy':'');p.title=online?'Conectado ao Supabase':'Sem conexão com o servidor Supabase';
+ p.innerHTML=`<span class="dot ${online?'on':'off'}"></span>${busy?'Sincronizando':online?'Online':'Offline'}${n?', '+n+' pendente'+(n>1?'s':''):''}<button data-a="sync" aria-label="Sincronizar agora"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></button>`}
+
+/* ---------- regras ---------- */
+function info(v){
+ const rs=S.revisoes.filter(r=>r.veiculo_id===v.id).sort((a,b)=>b.data.localeCompare(a.data)||b.km-a.km);
+ const km=Math.max(v.km||0,...rs.map(r=>r.km)),u=rs[0],own=v.prox_km||v.prox_data,pk=own?v.prox_km:u&&u.prox_km,pd=own?v.prox_data:u&&u.prox_data;
+ let st=u||pk||pd?'ok':'sem';
+ if(st==='ok'){const d=pd?(new Date(pd)-new Date(hoje()))/864e5:null;
+  if((pk&&km>=pk)||(d!==null&&d<0))st='venc';else if((pk&&pk-km<=1000)||(d!==null&&d<=30))st='prox'}
+ return{rs,km,u,st,pk,pd}}
+const ST={sem:['Sem revisões','mu'],ok:['Em dia','ok'],prox:['Revisão próxima','wn'],venc:['Revisão vencida','er']};
+const plate=(p,c)=>`<span class="pl ${c||''}"><i>BRASIL</i><b>${esc(p)}</b></span>`;
+const LOGO="M74.9 15.2 72.1 16.5 69.2 19.2 64.8 20.2 59.9 22.2 55.5 21.6 53.6 22.4 52.2 23.9 50.8 28.1 46.1 32.9 42.4 38.2 39.4 44.4 37.1 51.6 30.6 55.1 28.0 57.4 26.9 59.4 27.0 60.2 27.8 60.8 45.5 62.6 50.5 62.8 53.1 63.5 51.6 64.1 41.0 63.5 39.8 63.8 39.2 64.5 40.4 74.1 43.1 82.2 46.8 88.8 51.1 94.1 61.2 104.0 63.9 107.6 65.2 111.9 65.4 114.4 64.9 116.5 63.5 118.6 60.8 120.8 54.5 123.0 49.4 123.6 27.0 123.6 26.5 124.4 29.6 127.5 37.6 133.5 42.8 136.5 49.2 139.5 55.0 141.6 63.5 143.6 71.0 144.5 76.5 144.6 88.4 143.4 95.6 141.6 101.6 139.5 108.6 136.1 114.2 132.8 124.0 124.8 124.1 124.0 123.6 123.6 101.6 123.6 96.0 123.0 92.8 122.0 89.1 120.2 87.0 118.4 85.5 115.2 85.8 110.4 87.1 107.1 90.9 102.5 101.2 92.2 104.6 87.8 108.5 80.1 110.5 73.1 111.8 62.4 112.6 61.8 123.6 60.5 123.9 59.6 123.5 58.5 121.8 56.4 118.9 54.4 113.6 51.6 111.6 45.1 108.6 38.8 104.4 32.6 100.1 28.2 99.0 25.0 97.2 22.5 95.2 21.6 90.8 22.2 85.5 20.1 81.9 19.4 80.6 18.8 78.2 16.2 76.5 15.4ZM20.2 31.9 13.4 42.6 9.4 52.1 7.2 59.8 6.2 65.1 5.6 72.8 6.4 85.0 9.2 97.0 13.4 106.8 16.5 112.1 19.5 116.2 20.4 116.6 51.0 116.6 57.0 115.5 58.8 114.8 60.6 113.1 60.6 111.8 58.8 110.0 45.6 103.5 38.2 98.9 34.0 95.4 28.0 88.9 24.0 82.2 21.0 73.9 19.8 66.4 19.8 56.0 21.9 46.5 25.0 39.5 29.8 32.4 36.8 25.2 41.0 22.0 45.9 19.0 52.2 16.0 62.8 12.9 71.5 11.8 81.4 11.9 92.2 13.9 100.5 16.9 109.9 22.1 115.2 26.4 119.5 30.6 123.1 35.2 127.9 43.9 130.2 51.6 131.1 57.5 131.1 64.6 130.1 72.1 127.9 79.5 124.6 86.0 119.9 92.2 113.6 98.0 106.2 102.9 92.4 109.8 90.4 111.4 90.4 113.5 93.8 115.5 99.9 116.6 130.4 116.6 131.8 115.8 137.8 105.9 140.6 99.2 142.6 93.1 144.8 81.5 144.6 66.1 143.6 60.2 141.8 53.2 139.2 46.6 136.4 40.9 132.2 34.2 128.9 29.9 123.5 24.1 118.5 19.8 111.9 15.1 105.2 11.5 94.0 7.2 89.2 6.1 81.0 5.0 71.9 4.9 67.0 5.2 60.4 6.4 52.9 8.5 46.2 11.1 40.0 14.4 32.9 19.2 28.9 22.6Z";
+const mark=(c,s)=>`<span class="mk ${c||''}"${s?` style="--s:${s}px"`:''}><svg viewBox="0 0 152 146" aria-hidden="true"><path d="${LOGO}" pathLength="1" fill="currentColor" fill-rule="evenodd"/></svg></span>`;
+function splash(){if(matchMedia('(prefers-reduced-motion:reduce)').matches||$('#sp'))return;
+ document.body.insertAdjacentHTML('beforeend',`<div id="sp" aria-hidden="true"><div>${mark('draw')}<div class="wm"><b>OMEGA</b><span>Service</span></div></div></div>`);
+ const e=$('#sp'),rm=()=>e.remove();e.onclick=rm;setTimeout(rm,3100)}
+const nomeMec=()=>(S.mecanicos.find(m=>m.id===S.me)||{}).nome||'';
+const toast=m=>{const t=$('#t');t.textContent=m;t.className='show';clearTimeout(toast.h);toast.h=setTimeout(()=>t.className='',2600)};
+const modal=h=>{clearStage();D.innerHTML=h;if(!D.open)D.showModal()};
+const stag=(h,i)=>h.replace(/^<(\w+)/,`<$1 style="--i:${i}"`);
+
+/* acesso de mecânico: pede a senha e o perfil só quando a ação exige */
+function gate(f){
+ if(!P.mec){pend=f;return modal(`<form data-f="pw"><h3>Acesso de mecânico</h3><p class="mu">Esta ação é exclusiva da equipe. Digite a senha dos mecânicos.</p><label>Senha<input type="password" name="pw" required autofocus></label><p class="err" id="ferr"></p><div class="ac"><button type="button" class="btn" data-a="close">Cancelar</button><button class="btn pri">Liberar</button></div></form>`)}
+ if(!S.me){pend=f;return perfis()}
+ f()}
+function perfis(){modal(`<h3>Quem está na bancada?</h3><p class="mu">Seu nome aparece como responsável nas revisões que você registrar.</p>${S.mecanicos.map(m=>`<button class="btn blk" data-a="choose" data-p="${m.id}">${esc(m.nome)}</button>`).join('')}
+ <form data-f="perfil"><label>Ainda não tem perfil?<input name="nome" required placeholder="Seu nome completo"></label><div class="ac"><button class="btn pri">Criar perfil e continuar</button></div></form>`)}
+function done(){D.close();paintHead();const f=pend;pend=null;if(f)f();else renderMain(true)}
+
+/* ---------- ações (clique) e formulários (submit) ---------- */
+const X={
+ close:()=>{pend=null;D.close()},sync:()=>sync(true),
+ foto:id=>{const a=S.anexos.find(x=>x.id===id);if(a)modal(`<img class="big" data-a="close" src="${esc(fsrc(a))}" alt="${esc(a.legenda||'Foto anexada')}">${a.legenda?`<p style="margin:10px 0 0">${esc(a.legenda)}</p>`:''}<div class="ac"><button class="btn" data-a="close">Fechar</button></div>`)},
+ rmFoto:id=>{const i=stage.findIndex(s=>s.id===id);if(i<0)return;URL.revokeObjectURL(stage[i].url);stage.splice(i,1);const r=document.querySelector(`[data-row="${id}"]`);if(r)r.remove()},
+ go:t=>{const f=()=>{view.tab=t;view.id=null;renderMain(true);paintHead();scrollTo(0,0)};t==='eq'?gate(f):f()},
+ abrir:id=>{view.id=id||null;renderMain(true);scrollTo(0,0)},
+ choose:id=>{S.me=id;save();done()},
+ offline:()=>{P.user=($('#em')||{}).value||'Visitante';try{localStorage.setItem('omega-user',P.user)}catch(e){}app();sync();splash()},
+ sair:()=>{try{localStorage.removeItem('omega-user')}catch(e){}if(sb)sb.auth.signOut();P={user:null,mec:false};online=false;lerr='';view={tab:'vei',id:null,q:''};app()},
+ perfil:()=>gate(()=>{}),
+ novoVei:()=>gate(()=>formVei()),editar:id=>gate(()=>formVei(S.veiculos.find(x=>x.id===id))),novaRev:id=>gate(()=>formRev(id)),novaOS:()=>formOS(),
+ resolver:id=>gate(()=>{const o=S.ordens_servico.find(x=>x.id===id);formRev(o.veiculo_id,o)}),
+ excluir:id=>gate(()=>{const v=S.veiculos.find(x=>x.id===id),n=S.revisoes.filter(r=>r.veiculo_id===id).length;
+  modal(`<h3>Excluir ${esc(v.placa)}?</h3><p>${esc(v.marca)} ${esc(v.modelo)} será removido com ${n} ${n===1?'revisão':'revisões'} e as OS dele, aqui e no Supabase. Esta ação não pode ser desfeita.</p><div class="ac"><button class="btn" data-a="close">Cancelar</button><button class="btn dg" data-a="excluirOk" data-p="${id}">Excluir veículo</button></div>`)}),
+ excluirOk:id=>{
+  /* fotos das OS deste veículo: descarta as que estavam na fila e manda apagar os arquivos do Storage (o banco apaga as linhas em cascata) */
+  const ids=new Set(S.ordens_servico.filter(o=>o.veiculo_id===id).map(o=>o.id)),fx=S.anexos.filter(a=>ids.has(a.os_id));
+  fx.forEach(a=>idb('readwrite',s=>s.delete(a.id)).catch(()=>{}));S.q=S.q.filter(o=>!(o.t==='anexos'&&o.row&&ids.has(o.row.os_id)));S.anexos=S.anexos.filter(a=>!ids.has(a.os_id));
+  S.revisoes=S.revisoes.filter(r=>r.veiculo_id!==id);S.ordens_servico=S.ordens_servico.filter(o=>o.veiculo_id!==id);del('veiculos',id);if(fx.length){S.q.push({t:'anexos',op:'rm',paths:fx.map(a=>a.caminho)});save();sync()}D.close();view.id=null;renderMain(true);toast('Veículo excluído')},
+ editMec:id=>{const m=S.mecanicos.find(x=>x.id===id);if(m)modal(`<form data-f="editMec"><input type="hidden" name="id" value="${m.id}"><h3>Editar perfil</h3><p class="mu">O novo nome também passa a valer nas revisões que ele já registrou.</p><label>Nome do mecânico<input name="nome" required value="${esc(m.nome)}" autofocus></label><p class="err" id="ferr"></p><div class="ac"><button type="button" class="btn" data-a="close">Cancelar</button><button class="btn pri">Salvar perfil</button></div></form>`)},
+ delMec:id=>{const m=S.mecanicos.find(x=>x.id===id);if(!m)return;if(S.mecanicos.length<2)return toast('Mantenha pelo menos um mecânico na equipe');
+  const n=S.revisoes.filter(r=>r.mecanico_nome===m.nome).length;
+  modal(`<h3>Excluir ${esc(m.nome)}?</h3><p>O perfil sai da equipe${m.id===S.me?' e você vai precisar escolher outro perfil':''}. O histórico dele (${n} ${n===1?'revisão':'revisões'}) continua nos veículos, com o nome dele.</p><div class="ac"><button class="btn" data-a="close">Cancelar</button><button class="btn dg" data-a="delMecOk" data-p="${id}">Excluir perfil</button></div>`)},
+ delMecOk:id=>{del('mecanicos',id);paintHead();renderMain(true);toast('Perfil excluído');if(S.me===id){S.me=null;save();paintHead();pend=null;perfis()}else D.close()}
+};
+const F={
+ async login(f){const em=f.email.value.trim(),btn=f.querySelector('button');btn.disabled=true;
+  if(!sb)lerr='Supabase ainda não está configurado neste arquivo.';
+  else{const r=await sb.auth.signInWithPassword({email:em,password:f.pw.value});
+   if(!r.error){P.user=em;try{localStorage.setItem('omega-user',em)}catch(e){}app();sync();splash();return}
+   lerr=r.error.status?'E-mail ou senha incorretos.':'Sem conexão com o servidor Supabase.'}
+  app(true,em)},
+ pw:f=>{if(f.pw.value===SENHA){P.mec=true;done()}else $('#ferr').textContent='Senha incorreta. Peça a senha atual à chefia da oficina.'},
+ editMec:f=>{const id=f.id.value,nome=f.nome.value.trim(),m=S.mecanicos.find(x=>x.id===id);if(!m)return D.close();
+  if(S.mecanicos.some(x=>x.id!==id&&norm(x.nome)===norm(nome)))return $('#ferr').textContent='Já existe um mecânico com este nome.';
+  const old=m.nome;put('mecanicos',{...m,nome});
+  if(old!==nome){S.revisoes.filter(r=>r.mecanico_nome===old).forEach(r=>put('revisoes',{...r,mecanico_nome:nome}));S.ordens_servico.filter(o=>o.resolvida_por===old).forEach(o=>put('ordens_servico',{...o,resolvida_por:nome}))}
+  D.close();paintHead();renderMain(true);toast('Perfil atualizado')},
+ perfil:f=>{const m={id:rid(),nome:f.nome.value.trim()};put('mecanicos',m);S.me=m.id;save();done()},
+ vei:f=>{const id=f.id.value,p=f.placa.value.toUpperCase().replace(/[^A-Z0-9]/g,''),c=f.chassi.value.toUpperCase().trim(),er=m=>$('#ferr').textContent=m;
+  if(!/^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/.test(p))return er('Placa inválida. Use o formato ABC1D23 ou ABC1234.');
+  if(S.veiculos.some(v=>v.placa===p&&v.id!==id))return er('Já existe um veículo com esta placa.');
+  if(c&&!/^[A-HJ-NPR-Z0-9]{17}$/.test(c))return er('Chassi inválido. Ele tem 17 caracteres, sem as letras I, O e Q.');
+  if(c&&S.veiculos.some(v=>v.chassi===c&&v.id!==id))return er('Já existe um veículo com este chassi.');
+  const old=S.veiculos.find(x=>x.id===id)||{},cur=Math.max(+f.km.value,id?info(old).km:0);
+  if(f.pkm.value&&+f.pkm.value<=cur)return er('A próxima revisão em km precisa ser maior que o km atual ('+fk(cur)+').');
+  const v={...old,id:id||rid(),placa:p,chassi:c||null,marca:f.marca.value.trim(),modelo:f.modelo.value.trim(),ano:+f.ano.value,cor:f.cor.value.trim(),km:+f.km.value,setor:f.setor.value.trim(),prox_km:+f.pkm.value||null,prox_data:f.pdata.value||null};
+  put('veiculos',v);D.close();view.tab='vei';view.id=v.id;renderMain(true);toast(id?'Veículo atualizado':'Veículo cadastrado')},
+ async rev(f){const v=S.veiculos.find(x=>x.id===f.vid.value),atual=info(v).km,km=+f.km.value,er=m=>$('#ferr').textContent=m;
+  if(km<atual)return er(`O km informado (${fk(km)}) é menor que a última leitura (${fk(atual)}). Confira o odômetro.`);
+  if(f.pkm.value&&+f.pkm.value<=km)return er('O km da próxima revisão precisa ser maior que o km desta revisão.');
+  if(prep)return er('Aguarde um instante: as fotos ainda estão sendo preparadas.');
+  const r={id:rid(),veiculo_id:v.id,data:f.data.value,tipo:f.tipo.value,km,descricao:f.desc.value.trim(),pecas:f.pecas.value.trim(),custo:+f.custo.value||0,prox_km:+f.pkm.value||null,prox_data:f.pdata.value||null,mecanico_nome:f.resp.value};
+  let ax=[];if(f.os.value&&stage.length){const b=f.querySelector('.btn.pri');b.disabled=true;try{ax=await guardarFotos(f.os.value,r.id,'resposta')}catch(e){b.disabled=false;return er(MSGFOTO)}}
+  put('revisoes',r);if(r.prox_km||r.prox_data)put('veiculos',{...v,prox_km:r.prox_km,prox_data:r.prox_data});
+  if(f.os.value){const o=S.ordens_servico.find(x=>x.id===f.os.value);put('ordens_servico',{...o,status:'resolvida',resolvida_em:r.data,resolvida_por:r.mecanico_nome})}
+  ax.forEach(a=>put('anexos',a));
+  D.close();view.tab='vei';view.id=v.id;renderMain(true);toast('Revisão registrada')},
+ async os(f){const er=m=>$('#ferr').textContent=m;
+  if(prep)return er('Aguarde um instante: as fotos ainda estão sendo preparadas.');
+  const o={id:rid(),veiculo_id:f.vid.value,descricao:f.desc.value.trim(),prioridade:f.prio.value,solicitante:f.sol.value.trim(),data:hoje(),status:'aberta',resolvida_em:null,resolvida_por:null};
+  let ax=[];if(stage.length){const b=f.querySelector('.btn.pri');b.disabled=true;try{ax=await guardarFotos(o.id,null,'abertura')}catch(e){b.disabled=false;return er(MSGFOTO)}}
+  put('ordens_servico',o);ax.forEach(a=>put('anexos',a));D.close();view.tab='os';renderMain(true);paintHead();toast('OS aberta')}
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&X[b.dataset.a])X[b.dataset.a](b.dataset.p)});
+document.addEventListener('submit',e=>{const f=e.target.closest('[data-f]');if(f){e.preventDefault();F[f.dataset.f](f)}});
+document.addEventListener('input',e=>{if(e.target.id==='q'){view.q=e.target.value;$('#lista').innerHTML=veiRows(false)}});
+document.addEventListener('input',e=>{const l=e.target.dataset&&e.target.dataset.leg;if(l){const s=stage.find(x=>x.id===l);if(s)s.legenda=e.target.value}});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.leg){e.preventDefault();e.target.blur()}});
+document.addEventListener('change',async e=>{const i=e.target;if(!i.matches||!i.matches('input[data-fotos]'))return;
+ const L=[...i.files],g=gen;i.value='';if(!L.length)return;const m=$('#ferr');if(m)m.textContent='';prep++;paintBusy();
+ for(const f of L){if(g!==gen)return;let b;
+  try{b=await shrink(f)}catch(x){if(g===gen&&m)m.textContent='Uma das fotos não pôde ser lida. Tente outra.';continue}
+  if(g!==gen)return;const s={id:rid(),blob:b,url:URL.createObjectURL(b),legenda:''};stage.push(s);$('#sg').insertAdjacentHTML('beforeend',rowHtml(s))}
+ if(g===gen){prep--;paintBusy()}});
+D.addEventListener('close',clearStage);
+
+/* ---------- formulários ---------- */
+function formVei(v){v=v||{};const g=k=>esc(v[k]==null?'':v[k]);modal(`<form data-f="vei"><input type="hidden" name="id" value="${g('id')}"><h3>${v.id?'Editar veículo':'Novo veículo'}</h3><p class="mu">A placa é o principal identificador na busca.</p>
+ <div class="g2"><label>Placa<input name="placa" required maxlength="8" placeholder="ABC1D23" value="${g('placa')}" style="text-transform:uppercase"></label><label>Chassi (17 caracteres)<input name="chassi" maxlength="17" value="${g('chassi')}" style="text-transform:uppercase"></label></div>
+ <div class="g2"><label>Marca<input name="marca" required value="${g('marca')}"></label><label>Modelo<input name="modelo" required value="${g('modelo')}"></label></div>
+ <div class="g2"><label>Ano<input name="ano" type="number" min="1980" max="2100" required value="${g('ano')}"></label><label>Cor<input name="cor" required value="${g('cor')}"></label></div>
+ <div class="g2"><label>Km atual<input name="km" type="number" min="0" required value="${g('km')}"></label><label>Setor ou identificação<input name="setor" value="${g('setor')}"></label></div>
+ <div class="g2"><label>Próxima revisão (km)<input name="pkm" type="number" min="0" value="${g('prox_km')}"></label><label>Próxima revisão (data)<input name="pdata" type="date" value="${g('prox_data')}"></label></div>
+ <p class="mu" style="font-size:14px;margin:0 0 6px">Em branco, vale o que foi previsto na última revisão.</p>
+ <p class="err" id="ferr"></p><div class="ac"><button type="button" class="btn" data-a="close">Cancelar</button><button class="btn pri">Salvar veículo</button></div></form>`)}
+function formRev(vid,o){const v=S.veiculos.find(x=>x.id===vid);
+ modal(`<form data-f="rev"><input type="hidden" name="vid" value="${vid}"><input type="hidden" name="os" value="${o?o.id:''}"><h3>${o?'Resolver OS e registrar revisão':'Nova revisão'}</h3><p class="mu">${esc(v.placa)}, ${esc(v.marca)} ${esc(v.modelo)}</p>
+ <div class="g2"><label>Tipo<select name="tipo"><option value="preventiva">Preventiva</option><option value="corretiva" ${o?'selected':''}>Corretiva</option></select></label><label>Data<input type="date" name="data" value="${hoje()}" max="${hoje()}" required></label></div>
+ <label>Km na revisão<input type="number" name="km" min="0" required value="${info(v).km}"></label>
+ <label>O que foi feito<textarea name="desc" rows="3" required>${o?esc('Resposta à OS: '+o.descricao+'\n'):''}</textarea></label>
+ <label>Peças e materiais<textarea name="pecas" rows="2"></textarea></label>
+ <label>Custo (R$)<input type="number" name="custo" min="0" step="0.01"></label>
+ <div class="g2"><label>Próxima revisão (km)<input type="number" name="pkm" min="0"></label><label>Próxima revisão (data)<input type="date" name="pdata" min="${hoje()}"></label></div>
+ <label>Mecânico responsável<select name="resp">${S.mecanicos.map(m=>`<option ${m.id===S.me?'selected':''}>${esc(m.nome)}</option>`).join('')}</select></label>
+ <div class="sg" id="sg"></div><p class="err" id="ferr"></p><div class="ac">${o?FOTOBTN:''}<button type="button" class="btn" data-a="close">Cancelar</button><button class="btn pri">Salvar revisão</button></div></form>`)}
+function formOS(){modal(`<form data-f="os"><h3>Abrir OS</h3>
+ <label>Veículo<select name="vid" required>${[...S.veiculos].sort((a,b)=>a.placa.localeCompare(b.placa)).map(v=>`<option value="${v.id}">${esc(v.placa)}, ${esc(v.marca)} ${esc(v.modelo)}</option>`).join('')}</select></label>
+ <label>O que está acontecendo<textarea name="desc" rows="3" required placeholder="Descreva o problema ou o serviço pedido"></textarea></label>
+ <div class="g2"><label>Prioridade<select name="prio"><option value="normal">Normal</option><option value="urgente">Urgente</option></select></label><label>Solicitante<input name="sol" required value="${esc(P.mec?nomeMec():(P.user||'').split('@')[0])}"></label></div>
+ <div class="sg" id="sg"></div><p class="err" id="ferr"></p><div class="ac">${FOTOBTN}<button type="button" class="btn" data-a="close">Cancelar</button><button class="btn pri">Abrir OS</button></div></form>`)}
+
+/* ---------- telas ---------- */
+function app(anim,em){
+ const A=$('#app');
+ if(!P.user){A.innerHTML=`<div class="login">${mark('',84)}<h1 style="--i:1">Omega Service</h1><p class="mu" style="--i:2">Histórico de revisões da oficina</p>
+ <form data-f="login" style="--i:3"><input type="hidden" id="em" name="email" value="${EMAIL}"><label>Senha de acesso<input type="password" name="pw" required autocomplete="current-password" autofocus></label><p class="err">${esc(lerr)}</p><button class="btn pri">Entrar</button></form>
+ ${lerr?`<button class="btn" data-a="offline" style="--i:4">Continuar sem conexão</button><p class="mu" style="font-size:14px;--i:5">O modo sem conexão usa os dados salvos neste aparelho e sincroniza quando o servidor voltar.</p>`:''}</div>`;return}
+ A.innerHTML=`<header><div class="lg">${mark('',32)}Omega Service</div><div id="pill"></div><button class="hb" data-a="sair">Sair</button></header><div id="nav"></div><main id="main"></main>`;
+ paint();paintHead();renderMain(true)}
+function paintHead(){const n=$('#nav');if(!n)return;
+ const tabs=[['vei','Veículos'],['os','Ordens de serviço'],['eq','Equipe']];
+ n.innerHTML=`<nav>${tabs.map(t=>`<button ${view.tab===t[0]?'aria-current="page"':''} data-a="go" data-p="${t[0]}">${t[1]}</button>`).join('')}</nav>`+(P.mec?`<nav style="margin-top:8px"><button data-a="perfil" style="flex:none;padding:4px 12px;font-size:14px">Mecânico: ${esc(nomeMec())}, trocar perfil</button></nav>`:'')}
+function renderMain(anim){const M=$('#main');if(!M)return;M.className=anim?'in':'';
+ M.innerHTML=view.tab==='vei'?(view.id?veiDet():veiLista()):view.tab==='os'?osLista():equipe()}
+
+function match(v,q){const t=[v.placa,v.chassi,v.marca,v.modelo,v.ano,v.cor,v.setor].join(' ');return norm(t).includes(norm(q))||(flat(q)&&flat(t).includes(flat(q)))}
+function veiRows(anim){
+ const ord={venc:0,prox:1,ok:2,sem:3};
+ const L=S.veiculos.filter(v=>!view.q||match(v,view.q)).map(v=>({v,i:info(v)})).sort((a,b)=>ord[a.i.st]-ord[b.i.st]||a.v.placa.localeCompare(b.v.placa));
+ if(!L.length)return`<p class="mu">${S.veiculos.length?`Nenhum veículo encontrado para “${esc(view.q)}”. Cadastre-o com o botão Novo veículo.`:'Nenhum veículo cadastrado. Use Novo veículo para começar o histórico.'}</p>`;
+ return L.map(({v,i},n)=>`<button class="row ${i.st}" data-a="abrir" data-p="${v.id}" ${anim===false?'':`style="animation:rise .5s both;animation-delay:${n*50}ms"`}>${plate(v.placa)}<span class="rt"><b>${esc(v.marca)} ${esc(v.modelo)}</b><span>${esc(v.ano)}, ${esc(v.cor)}, ${fk(i.km)}</span><span>${i.u?'Última revisão em '+fd(i.u.data):'Nenhuma revisão registrada'}</span></span><em class="bd b-${ST[i.st][1]}">${ST[i.st][0]}</em></button>`).join('')}
+function veiLista(){
+ const venc=S.veiculos.filter(v=>info(v).st==='venc').length;
+ return`<div class="bar"><input id="q" type="search" placeholder="Buscar por placa, chassi, modelo, cor…" value="${esc(view.q)}" aria-label="Buscar veículo" autocomplete="off"><button class="btn pri" data-a="novoVei">Novo veículo</button></div>
+ <p class="mu" style="margin:0 0 12px;--i:1">${S.veiculos.length} veículos, ${venc} com revisão vencida</p><div id="lista">${veiRows(true)}</div>`}
+function veiDet(){
+ const v=S.veiculos.find(x=>x.id===view.id);if(!v){view.id=null;return veiLista()}const i=info(v),u=i.u;
+ return`<button class="link" data-a="abrir">Voltar para veículos</button>
+ <div class="card" style="--i:1"><div class="top">${plate(v.placa,'big')}<div><h2>${esc(v.marca)} ${esc(v.modelo)}</h2><em class="bd b-${ST[i.st][1]}">${ST[i.st][0]}</em></div></div>
+ <dl><dt>Chassi</dt><dd>${esc(v.chassi)||'—'}</dd><dt>Ano e cor</dt><dd>${esc(v.ano)}, ${esc(v.cor)}</dd><dt>Km atual</dt><dd>${fk(i.km)}</dd><dt>Setor</dt><dd>${esc(v.setor)||'—'}</dd>
+ <dt>Próxima revisão</dt><dd>${i.pk||i.pd?[i.pk?'aos '+fk(i.pk):'',i.pd?'em '+fd(i.pd):''].filter(Boolean).join(' ou '):'não definida'}</dd></dl><p style="margin:12px 0 0"><button class="btn sm" data-a="editar" data-p="${v.id}">Editar veículo</button></p></div>
+ <div class="hd" style="justify-content:space-between;--i:2"><h2>Histórico de revisões (${i.rs.length})</h2><button class="btn pri" data-a="novaRev" data-p="${v.id}">Nova revisão</button></div>
+ ${i.rs.length?`<ul class="tl" style="--i:3">${i.rs.map((r,n)=>`<li style="--i:${n}"><div class="hd"><b>${fd(r.data)}</b><em class="bd b-${r.tipo==='preventiva'?'ok':'wn'}">${r.tipo==='preventiva'?'Preventiva':'Corretiva'}</em><span class="mu">${fk(r.km)}</span></div>
+ <p>${esc(r.descricao)}</p>${r.pecas?`<p class="mu">Peças: ${esc(r.pecas)}</p>`:''}<p class="mu">Responsável: <b>${esc(r.mecanico_nome)}</b>${r.custo?', custo '+fm(r.custo):''}</p>${galeria(fotosDe(a=>a.revisao_id===r.id))}</li>`).join('')}</ul>`:'<p class="mu" style="--i:3">Este veículo ainda não tem revisões. Registre a primeira para iniciar o histórico.</p>'}
+ <p style="margin-top:20px;--i:4"><button class="btn sm dg" data-a="excluir" data-p="${v.id}">Excluir veículo</button></p>`}
+function osLista(){
+ const L=[...S.ordens_servico].sort((a,b)=>(a.status==='aberta'?0:1)-(b.status==='aberta'?0:1)||b.data.localeCompare(a.data));
+ return`<div class="hd" style="justify-content:space-between;margin-bottom:12px"><h2>Ordens de serviço</h2><button class="btn pri" data-a="novaOS">Abrir OS</button></div>
+ ${L.length?L.map((o,n)=>{const v=S.veiculos.find(x=>x.id===o.veiculo_id);if(!v)return'';const ab=o.status==='aberta',fa=fotosDe(a=>a.os_id===o.id&&a.etapa==='abertura'),fr=fotosDe(a=>a.os_id===o.id&&a.etapa==='resposta');return`<div class="card" style="--i:${n+1}"><div class="top" style="margin:0 0 8px">${plate(v.placa)}<div style="flex:1"><b>${esc(v.marca)} ${esc(v.modelo)}</b><br><span class="mu">Aberta por ${esc(o.solicitante)} em ${fd(o.data)}</span></div>
+ <em class="bd b-${ab?(o.prioridade==='urgente'?'er':'wn'):'ok'}">${ab?(o.prioridade==='urgente'?'Urgente':'Aberta'):'Resolvida'}</em></div>
+ <p style="margin:0">${esc(o.descricao)}</p>${galeria(fa)}${ab?`<p style="margin:10px 0 0"><button class="btn sm pri" data-a="resolver" data-p="${o.id}">Resolver e registrar revisão</button></p>`:`<p class="mu" style="margin:6px 0 0">Resolvida em ${fd(o.resolvida_em)} por ${esc(o.resolvida_por)}. Registrada no histórico do veículo.</p>${fr.length?`<p class="mu" style="margin:10px 0 0;font-size:14px">Fotos do que foi feito</p>${galeria(fr)}`:''}`}</div>`}).join(''):'<p class="mu">Nenhuma OS aberta. Use Abrir OS para registrar um problema ou pedido de revisão.</p>'}`}
+function equipe(){
+ return`<h2 style="margin-bottom:12px">Equipe de mecânicos</h2>${S.mecanicos.map((m,n)=>{const c=S.revisoes.filter(r=>r.mecanico_nome===m.nome).length;return`<div class="card" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;--i:${n+1}"><div style="min-width:0"><b>${esc(m.nome)}${m.id===S.me?' (você)':''}</b><br><span class="mu">${c} ${c===1?'revisão':'revisões'}</span></div><div style="display:flex;gap:6px"><button class="btn sm" data-a="editMec" data-p="${m.id}">Editar perfil</button><button class="btn sm dg" data-a="delMec" data-p="${m.id}">Excluir</button></div></div>`}).join('')}
+ <form class="card" data-f="perfil" style="margin-top:14px"><label>Adicionar perfil<input name="nome" required placeholder="Nome do mecânico"></label><button class="btn pri">Adicionar e usar este perfil</button></form>`}
+
+load();
+try{const u=localStorage.getItem('omega-user');if(u)P.user=u}catch(e){}
+app();sync();splash();hidratar();
+addEventListener('online',()=>sync());addEventListener('offline',()=>{online=false;paint()});setInterval(()=>{if(P.user&&!D.open)sync()},30000);
+</script>
+</body>
+</html>
