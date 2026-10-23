@@ -1,0 +1,17 @@
+{
+  "id": "./omega-service.html",
+  "name": "Omega Service, histórico de revisões",
+  "short_name": "Omega Service",
+  "description": "Histórico de revisões e ordens de serviço da frota.",
+  "lang": "pt-BR",
+  "start_url": "./omega-service.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#a50b27",
+  "theme_color": "#a50b27",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
